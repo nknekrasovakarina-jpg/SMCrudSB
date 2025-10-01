@@ -1,7 +1,7 @@
-package com.example.service;
+package com.example.smcrudsb.service;
 
-import com.example.entity.User;
-import com.example.dao.UserDao;
+import com.example.smcrudsb.entity.User;
+import com.example.smcrudsb.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

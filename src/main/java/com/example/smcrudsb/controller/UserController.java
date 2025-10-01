@@ -1,12 +1,11 @@
-package com.example.controller;
+package com.example.smcrudsb.controller;
 
-import com.example.entity.User;
-import com.example.service.UserService;
+import com.example.smcrudsb.entity.User;
+import com.example.smcrudsb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -18,44 +17,45 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Простой тест для проверки Spring
+    /**
+     * Тестовая ручка — возвращает просто "OK", чтобы проверить, работает ли Spring
+     */
     @GetMapping("/test")
     @ResponseBody
     public String test() {
         return "OK";
     }
 
-    // Показ всех пользователей на главной странице
+    /**
+     * Главная страница со списком пользователей
+     */
     @GetMapping("/")
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "users"; // имя твоей view, например users.jsp или users.html
+        return "users"; // src/main/webapp/WEB-INF/views/users.jsp
     }
 
-
-
-    // Переадресация для удобства, если кто-то откроет /home
+    /**
+     * Редирект со страницы /home на /
+     */
     @GetMapping("/home")
     public String redirectToRoot() {
         return "redirect:/";
     }
 
-    // Проверка страницы, также возвращает всех пользователей
-    @GetMapping("/check")
-    public ModelAndView check() {
-        ModelAndView mav = new ModelAndView("users");
-        mav.addObject("users", userService.getAllUsers());
-        return mav;
-    }
-
-    // Добавление пользователя
+    /**
+     * Добавление нового пользователя
+     */
     @PostMapping("/add")
     public String addUser(@RequestParam String name, @RequestParam String email) {
-        userService.saveUser(new User(name, email));
+        User user = new User(name, email);
+        userService.saveUser(user);
         return "redirect:/";
     }
 
-    // Обновление пользователя
+    /**
+     * Обновление существующего пользователя
+     */
     @PostMapping("/update")
     public String updateUser(@RequestParam Long id,
                              @RequestParam String name,
@@ -66,7 +66,9 @@ public class UserController {
         return "redirect:/";
     }
 
-    // Удаление пользователя
+    /**
+     * Удаление пользователя по ID
+     */
     @PostMapping("/delete")
     public String deleteUser(@RequestParam Long id) {
         userService.deleteUser(id);

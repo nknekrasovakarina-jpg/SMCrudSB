@@ -1,6 +1,6 @@
-package com.example.dao;
+package com.example.smcrudsb.dao;
 
-import com.example.entity.User;
+import com.example.smcrudsb.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

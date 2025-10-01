@@ -1,6 +1,6 @@
-package com.example.dao;
+package com.example.smcrudsb.dao;
 
-import com.example.entity.User;
+import com.example.smcrudsb.entity.User;
 import java.util.List;
 
 public interface UserDao {

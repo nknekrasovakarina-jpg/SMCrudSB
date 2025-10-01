@@ -1,6 +1,6 @@
-package com.example.service;
+package com.example.smcrudsb.service;
 
-import com.example.entity.User;
+import com.example.smcrudsb.entity.User;
 import java.util.List;
 
 public interface UserService {
